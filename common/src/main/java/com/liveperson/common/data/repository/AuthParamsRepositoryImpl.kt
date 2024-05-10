@@ -1,0 +1,50 @@
+package com.liveperson.common.data.repository
+
+import android.content.SharedPreferences
+import com.liveperson.common.domain.AuthParams
+import com.liveperson.common.domain.repository.AuthParamsRepository
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+
+class AuthParamsRepositoryImpl(
+    private val json: Json,
+    private val sharedPreferences: SharedPreferences
+) : AuthParamsRepository {
+
+    companion object {
+        private const val KEY_ACTIVE_BRAND_ID = "brand.id.active"
+    }
+
+    private val mutex = Mutex()
+    override suspend fun setLatestBrandId(brandId: String?){
+        mutex.withLock {
+            sharedPreferences.edit().putString(KEY_ACTIVE_BRAND_ID, brandId).commit()
+        }
+    }
+
+    override suspend fun getLatestBrandId(): String? = mutex.withLock {
+        sharedPreferences.getString(KEY_ACTIVE_BRAND_ID, null)
+    }
+
+    override suspend fun clearData() {
+        mutex.withLock {
+            sharedPreferences.edit().clear().commit()
+        }
+    }
+
+    override suspend fun saveCredentials(brandId: String, authParams: AuthParams) {
+        mutex.withLock {
+            sharedPreferences.edit().putString(brandId, json.encodeToString(authParams)).commit()
+        }
+    }
+
+    override suspend fun getCredentialsForBrand(brandId: String): AuthParams? = mutex.withLock {
+        try {
+            json.decodeFromString(sharedPreferences.getString(brandId, "") ?: "")
+        } catch (ex: Throwable) {
+            null
+        }
+    }
+}

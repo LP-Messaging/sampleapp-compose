@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="lp_is_offline_messaging_enabled">true</bool>
+    <bool name="enable_photo_sharing">true</bool>
+    <bool name="lp_is_consumer_file_caption_enabled">false</bool>
+</resources>

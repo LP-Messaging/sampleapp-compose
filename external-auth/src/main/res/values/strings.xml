@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_implicit_token">JWT token</string>
+    <string name="text_auth_code">Auth Code</string>
+    <string name="text_code">Code</string>
+    <string name="text_implicit">Implicit</string>
+    <string name="text_logout">Logout</string>
+    <string name="text_authenticate">Authenticate</string>
+    <string name="title_choose_authentication_flow">Choose authentication flow</string>
+    <string name="text_please_authenticate">Please authenticate</string>
+    <string name="text_brand_id">Brand id</string>
+</resources>

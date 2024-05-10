@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SampleApp</string>
+    <string name="text_change_readonly_mode">Change readonly mode</string>
+    <string name="text_open_filechooser">Open FileChooser</string>
+    <string name="text_open_gallery">Open Gallery</string>
+    <string name="text_open_camera">Open Camera</string>
+    <string name="text_send">Send</string>
+</resources>
