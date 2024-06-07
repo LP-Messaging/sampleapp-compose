@@ -36,7 +36,8 @@ internal class LivePersonWrapperViewModel(
     val initState: Flow<LPShowConversationData> = flow {
         val brandId: String = savedStateHandle.brandId
         val appId: String = savedStateHandle.appId
-        emit(livePersonAuthInteractor.initialize(brandId = brandId, appId = appId))
+        val appInstallId: String = savedStateHandle.appInstallId
+        emit(livePersonAuthInteractor.initialize(brandId = brandId, appId = appId, appInstallId = appInstallId))
     }.flowOn(Dispatchers.IO).map { result ->
         when (result) {
             is Success<Unit> -> {

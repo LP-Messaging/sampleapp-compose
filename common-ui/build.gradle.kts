@@ -40,7 +40,6 @@ android {
 
 dependencies {
 
-    implementation(fileTree(mapOf("dir" to "../aars", "include" to listOf("*.aar"))))
     implementation(project(mapOf("path" to ":common")))
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)

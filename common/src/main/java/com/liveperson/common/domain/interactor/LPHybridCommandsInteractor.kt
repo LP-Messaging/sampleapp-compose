@@ -1,19 +1,17 @@
 package com.liveperson.common.domain.interactor
 
 import com.liveperson.common.AppResult
-import com.liveperson.messaging.hybrid.commands.messaging.UrlData
+import com.liveperson.messaging.hybrid.commands.exceptions.HybridSDKException
 
 interface LPHybridCommandsInteractor {
 
-    suspend fun sendMessage(message: String): AppResult<Unit, Throwable>
+    suspend fun sendMessage(message: String): AppResult<Unit, HybridSDKException>
 
-    suspend fun sendMessageWithUrl(message: String, urlData: UrlData): AppResult<Unit, Throwable>
+    suspend fun openCamera(): AppResult<Unit, HybridSDKException>
 
-    suspend fun openCamera(): AppResult<Unit, Throwable>
+    suspend fun openGallery(): AppResult<Unit, HybridSDKException>
 
-    suspend fun openGallery(): AppResult<Unit, Throwable>
+    suspend fun fileSharingOpenFileChooser(): AppResult<Unit, HybridSDKException>
 
-    suspend fun fileSharingOpenFileChooser(): AppResult<Unit, Throwable>
-
-    suspend fun changeReadOnlyMode(isReadOnly: Boolean): AppResult<Unit, Throwable>
+    suspend fun changeReadOnlyMode(isReadOnly: Boolean): AppResult<Unit, HybridSDKException>
 }

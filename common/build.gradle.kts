@@ -34,12 +34,11 @@ android {
 }
 
 dependencies {
-    implementation(fileTree(mapOf("dir" to "../aars", "include" to listOf("*.aar"))))
     implementation(libs.bundles.koin)
     implementation(libs.androidx.local.broadcast.manager)
-
     implementation(libs.kotlinx.serialization)
 
+    implementation(libs.bundles.liveperson)
     androidTestImplementation(libs.bundles.androidx.test)
 
     testImplementation(libs.junit)

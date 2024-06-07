@@ -12,6 +12,8 @@ import com.example.external_auth.R
 import com.example.external_auth.presentation.auth.dto.CodeCredentials
 import com.example.external_auth.presentation.auth.dto.Credentials
 import com.example.external_auth.presentation.auth.dto.ImplicitCredentials
+import com.example.external_auth.presentation.auth.dto.UnAuthCredentials
+import com.example.external_auth.presentation.auth.dto.UserEngagementDetails
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -23,7 +25,7 @@ internal fun AuthenticationTypeLayout(
     Text(text = stringResource(R.string.title_choose_authentication_flow))
     SingleChoiceSegmentedButtonRow(modifier = modifier) {
         SegmentedButton(
-            shape = SegmentedButtonDefaults.itemShape(index = 0, count = 2),
+            shape = SegmentedButtonDefaults.itemShape(index = 0, count = 3),
             onClick = {
                 if (credentials !is CodeCredentials) {
                     onCredentialChanged(CodeCredentials(""))
@@ -34,7 +36,7 @@ internal fun AuthenticationTypeLayout(
             Text(stringResource(R.string.text_code))
         }
         SegmentedButton(
-            shape = SegmentedButtonDefaults.itemShape(index = 1, count = 2),
+            shape = SegmentedButtonDefaults.itemShape(index = 1, count = 3),
             onClick = {
                 if (credentials !is ImplicitCredentials) {
                     onCredentialChanged(ImplicitCredentials(""))
@@ -43,6 +45,25 @@ internal fun AuthenticationTypeLayout(
             selected = credentials is ImplicitCredentials
         ) {
             Text(stringResource(R.string.text_implicit))
+        }
+        SegmentedButton(
+            shape = SegmentedButtonDefaults.itemShape(index = 2, count = 3),
+            onClick = {
+                if (credentials !is UnAuthCredentials) {
+                    onCredentialChanged(
+                        UnAuthCredentials(
+                            "",
+                            UserEngagementDetails(
+                                "", "", "", "", ""
+                            )
+                        )
+                    )
+                }
+            },
+            selected = credentials is UnAuthCredentials
+
+        ) {
+            Text("UnAuth")
         }
     }
 }

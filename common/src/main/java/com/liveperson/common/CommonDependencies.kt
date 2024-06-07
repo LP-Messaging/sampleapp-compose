@@ -4,11 +4,13 @@ import android.content.Context
 import com.liveperson.common.data.liveperson.LPHybridCommandsInteractorImpl
 import com.liveperson.common.data.liveperson.LivePersonAuthInteractorImpl
 import com.liveperson.common.data.liveperson.LivePersonEventInteractorImpl
+import com.liveperson.common.data.liveperson.LivePersonMonitoringInteractorImpl
 import com.liveperson.common.data.persistance.createAuthPreferences
 import com.liveperson.common.data.repository.AuthParamsRepositoryImpl
 import com.liveperson.common.domain.interactor.LPHybridCommandsInteractor
 import com.liveperson.common.domain.interactor.LivePersonAuthInteractor
 import com.liveperson.common.domain.interactor.LivePersonEventsInteractor
+import com.liveperson.common.domain.interactor.LivePersonMonitoringInteractor
 import com.liveperson.common.domain.repository.AuthParamsRepository
 import kotlinx.serialization.json.Json
 import org.koin.core.qualifier.Qualifier
@@ -42,6 +44,10 @@ val commonDomainModule = module {
 
     single<LPHybridCommandsInteractor> {
         LPHybridCommandsInteractorImpl()
+    }
+
+    single<LivePersonMonitoringInteractor> {
+        LivePersonMonitoringInteractorImpl(get())
     }
 
     single<AuthParamsRepository> {

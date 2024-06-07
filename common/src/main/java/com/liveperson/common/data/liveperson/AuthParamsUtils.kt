@@ -3,12 +3,12 @@ package com.liveperson.common.data.liveperson
 import com.liveperson.common.domain.AuthParams
 import com.liveperson.common.domain.CodeParams
 import com.liveperson.common.domain.ImplicitJWEParams
-import com.liveperson.common.domain.ImplicitParams
+import com.liveperson.common.domain.ImplicitJWTParams
 import com.liveperson.common.domain.MultipleConsumerIdpParams
 import com.liveperson.common.domain.PKCEParams
 import com.liveperson.common.domain.SignUp
 import com.liveperson.common.domain.StepUpParams
-import com.liveperson.common.domain.UnAuth
+import com.liveperson.common.domain.UnAuthParams
 import com.liveperson.infra.auth.LPAuthenticationParams
 import com.liveperson.infra.auth.LPAuthenticationType
 
@@ -16,7 +16,7 @@ fun AuthParams.toAuthParams(): LPAuthenticationParams {
     return when (this) {
         is SignUp -> LPAuthenticationParams(LPAuthenticationType.SIGN_UP)
         is CodeParams -> LPAuthenticationParams(LPAuthenticationType.AUTH).setAuthKey(credentials)
-        is ImplicitParams -> LPAuthenticationParams(LPAuthenticationType.AUTH).setHostAppJWT(
+        is ImplicitJWTParams -> LPAuthenticationParams(LPAuthenticationType.AUTH).setHostAppJWT(
             credentials
         )
 
@@ -24,7 +24,7 @@ fun AuthParams.toAuthParams(): LPAuthenticationParams {
             credentials
         )
 
-        is UnAuth -> LPAuthenticationParams(LPAuthenticationType.UN_AUTH)
+        is UnAuthParams -> LPAuthenticationParams(LPAuthenticationType.UN_AUTH)
         is PKCEParams -> LPAuthenticationParams(LPAuthenticationType.AUTH).setCodeVerifier(
             codeVerifier
         ).setAuthKey(token)

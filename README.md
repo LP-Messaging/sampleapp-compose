@@ -1,4 +1,4 @@
-# LivePerson Compose Sample (Alpha)
+# LivePerson Compose Sample (Beta)
 
 This project is created to demonstrate using SDK provided ConversationFragment within Compose environment.
 It has an example of [composable function](/common-ui/src/main/java/com/liveperson/compose/common_ui/views/LPConversationScreen.kt#L11) that could be used to represent a conversation screen
@@ -39,14 +39,14 @@ Current project contains 4 separate modules:
 To send message that wasn't typed by consumer use:
 
 ```java
-ICallback<Unit, Throwable> callback = ... // your callback implementation
+ICallback<Unit, HybridSDKException> callback = ... // your callback implementation
 LivePerson.sendTextMessage("Your message here", callback);
 ```
 
 You can also check coroutine wrapper for this function in [`LPHybridCommandsInteractorImpl`](/common/src/main/java/com/liveperson/common/data/liveperson/LPHybridCommandsInteractorImpl.kt#L12).
 
 ```kotlin
-override suspend fun sendMessage(message: String): AppResult<Unit, Throwable> {
+override suspend fun sendMessage(message: String): AppResult<Unit, HybridSDKException> {
     return executeCommand { LivePerson.sendTextMessage(message, it) }
 }
 ```
@@ -61,14 +61,14 @@ override suspend fun sendMessage(message: String): AppResult<Unit, Throwable> {
 To open camera and send required file to agent use:
 
 ```java
-ICallback<Unit, Throwable> callback = ... // your callback implementation
+ICallback<Unit, HybridSDKException> callback = ... // your callback implementation
 LivePerson.fileSharingOpenCamera(callback);
 ```
 
 You can also check coroutine wrapper for this function in [`LPHybridCommandsInteractorImpl`](/common/src/main/java/com/liveperson/common/data/liveperson/LPHybridCommandsInteractorImpl.kt#L23).
 
 ```kotlin
-override suspend fun openCamera(): AppResult<Unit, Throwable> {
+override suspend fun openCamera(): AppResult<Unit, HybridSDKException> {
     return executeCommand { LivePerson.fileSharingOpenCamera(it) }
 }
 ```
@@ -90,14 +90,14 @@ to send it to consumer.
 To open file chooser and send required file to agent use:
 
 ```java
-ICallback<Unit, Throwable> callback = ... // your callback implementation
+ICallback<Unit, HybridSDKException> callback = ... // your callback implementation
 LivePerson.fileSharingOpenFile(callback);
 ```
 
 You can also check coroutine wrapper for this function in [`LPHybridCommandsInteractorImpl`](/common/src/main/java/com/liveperson/common/data/liveperson/LPHybridCommandsInteractorImpl.kt#L31).
 
 ```kotlin
-override suspend fun fileSharingOpenFileChooser(): AppResult<Unit, Throwable> {
+override suspend fun fileSharingOpenFileChooser(): AppResult<Unit, HybridSDKException> {
     return executeCommand { LivePerson.fileSharingOpenFile(it) }
 }
 ```
@@ -120,14 +120,14 @@ select a file and send it to agent.
 To open photo picket and send required photo to agent use:
 
 ```java
-ICallback<Unit, Throwable> callback = ... // your callback implementation
+ICallback<Unit, HybridSDKException> callback = ... // your callback implementation
 LivePerson.fileSharingOpenGallery(callback);
 ```
 
 You can also check coroutine wrapper for this function in [`LPHybridCommandsInteractorImpl`](/common/src/main/java/com/liveperson/common/data/liveperson/LPHybridCommandsInteractorImpl.kt#L27).
 
 ```kotlin
-override suspend fun openGallery(): AppResult<Unit, Throwable> {
+override suspend fun openGallery(): AppResult<Unit, HybridSDKException> {
     return executeCommand { LivePerson.fileSharingOpenGallery(it) }
 }
 ```
@@ -151,14 +151,14 @@ To show hide default ConversationFragment input use:
 
 ```java
 boolean isReadOnlyModeEnabled = true;
-ICallback<Unit, Throwable> callback = ... // your callback implementation
+ICallback<Unit, HybridSDKException> callback = ... // your callback implementation
 LivePerson.changeReadOnlyMode(isReadOnlyModeEnabled, it);
 ```
 
 You can also check coroutine wrapper for this function in[`LPHybridCommandsInteractorImpl`](/common/src/main/java/com/liveperson/common/data/liveperson/LPHybridCommandsInteractorImpl.kt#L35).
 
 ```kotlin
-override suspend fun changeReadOnlyMode(isReadOnly: Boolean): AppResult<Unit, Throwable> {
+override suspend fun changeReadOnlyMode(isReadOnly: Boolean): AppResult<Unit, HybridSDKException> {
     return executeCommand { LivePerson.changeReadOnlyMode(isReadOnly, it) }
 }
 ```

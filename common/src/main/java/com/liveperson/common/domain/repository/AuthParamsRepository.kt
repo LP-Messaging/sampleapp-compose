@@ -12,5 +12,9 @@ interface AuthParamsRepository {
 
     suspend fun saveCredentials(key: String, value: AuthParams)
 
+    suspend fun saveMonitoringIdForBrand(key: String, value: String)
+
     suspend fun getCredentialsForBrand(key: String): AuthParams?
+
+    suspend fun getMonitoringIdForBrand(key: String): String
 }
