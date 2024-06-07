@@ -1,6 +1,7 @@
 package com.liveperson.common.data.repository
 
 import android.content.SharedPreferences
+import android.util.Log
 import com.liveperson.common.domain.AuthParams
 import com.liveperson.common.domain.repository.AuthParamsRepository
 import kotlinx.coroutines.sync.Mutex
@@ -44,7 +45,24 @@ class AuthParamsRepositoryImpl(
         try {
             json.decodeFromString(sharedPreferences.getString(brandId, "") ?: "")
         } catch (ex: Throwable) {
+            Log.e("HERE", "ERROR", ex)
             null
+        }
+    }
+
+    override suspend fun saveMonitoringIdForBrand(brandId: String, appInstallId: String) {
+        if (brandId.isNotEmpty() && appInstallId.isNotEmpty()){
+            mutex.withLock {
+                appInstallId.let {
+                    sharedPreferences.edit().putString("$brandId-appInstallId", appInstallId).commit()
+                }
+            }
+        }
+    }
+
+    override suspend fun getMonitoringIdForBrand(brandId: String): String {
+        return mutex.withLock {
+            sharedPreferences.getString("$brandId-appInstallId", "") ?: ""
         }
     }
 }

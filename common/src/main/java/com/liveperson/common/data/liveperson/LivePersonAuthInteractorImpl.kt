@@ -7,6 +7,7 @@ import com.liveperson.common.data.liveperson.coroutines.executeLogout
 import com.liveperson.common.domain.AuthParams
 import com.liveperson.common.domain.interactor.LivePersonAuthInteractor
 import com.liveperson.infra.InitLivePersonProperties
+import com.liveperson.infra.MonitoringInitParams
 import com.liveperson.messaging.sdk.api.LivePerson
 
 internal class LivePersonAuthInteractorImpl(private val context: Context):
@@ -24,10 +25,12 @@ internal class LivePersonAuthInteractorImpl(private val context: Context):
 
     override suspend fun initialize(
         brandId: String,
-        appId: String?
+        appId: String?,
+        appInstallId: String
     ): AppResult<Unit, Throwable> {
         return executeLogin {
-            val properties = InitLivePersonProperties(brandId, appId, it)
+            val monitoringInitParams = MonitoringInitParams(appInstallId);
+            val properties = InitLivePersonProperties(brandId, appId, monitoringInitParams, it)
             LivePerson.initialize(context, properties)
         }
     }

@@ -19,10 +19,11 @@ import com.example.external_auth.R
 internal fun AuthField(
     value: String,
     onValueChange: (String) -> Unit,
-    label: String
+    label: String,
+    modifier: Modifier = Modifier.fillMaxWidth()
 ) {
     OutlinedTextField(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier,
         shape = RoundedCornerShape(12.dp),
         value = value,
         onValueChange = onValueChange,

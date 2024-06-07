@@ -7,7 +7,6 @@ import com.liveperson.common.domain.interactor.LPHybridCommandsInteractor
 import com.liveperson.common.domain.repository.AuthParamsRepository
 import com.liveperson.compose.common_ui.wrapper.LPArguments
 import com.liveperson.infra.ConversationViewParams
-import com.liveperson.messaging.hybrid.commands.messaging.UrlData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -33,7 +32,7 @@ class ConversationViewModel(
             val appId = SDK_MAKER_FCM_APP_ID
             val credentials = authParamsRepository.getCredentialsForBrand(brandId) ?: return@map null
             val conversationParams = ConversationViewParams(true)
-            LPArguments(brandId, appId, credentials.toAuthParams(), conversationParams)
+            LPArguments(brandId, appId, credentials.appInstallId, credentials.toAuthParams(), conversationParams)
         }
         .flowOn(Dispatchers.IO)
         .stateIn(viewModelScope, SharingStarted.Lazily, null)
@@ -41,12 +40,6 @@ class ConversationViewModel(
     fun sendMessage(message: String) {
         viewModelScope.launch(Dispatchers.IO) {
             hybridCommandsInteractor.sendMessage(message)
-        }
-    }
-
-    fun sendMessageWithUrl(message: String, url: UrlData) {
-        viewModelScope.launch(Dispatchers.IO) {
-            hybridCommandsInteractor.sendMessageWithUrl(message = message, urlData = url)
         }
     }
 

@@ -9,5 +9,5 @@ interface LivePersonAuthInteractor {
 
     suspend fun logout(brandId: String, appId: String): AppResult<Unit, Unit>
 
-    suspend fun initialize(brandId: String, appId: String?): AppResult<Unit, Throwable>
+    suspend fun initialize(brandId: String, appId: String?, appInstallId: String): AppResult<Unit, Throwable>
 }

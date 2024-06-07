@@ -41,10 +41,12 @@ android {
 dependencies {
 
     implementation(project(mapOf("path" to ":common")))
+
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
     implementation(libs.bundles.koin)
-
+    implementation(libs.bundles.liveperson)
+    
     testImplementation(libs.junit)
     testImplementation(libs.bundles.koin.test)
 

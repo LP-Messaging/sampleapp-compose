@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.liveperson.compose.common_ui.R
@@ -26,6 +27,17 @@ internal class LivepersonWrapperFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val fragment: ConversationFragment? = childFragmentManager.findFragment(ConversationFragment.TAG)
+                val isBackNavigationEnabled = fragment?.onBackPressed() ?: false
+                if (!isBackNavigationEnabled) {
+                    isEnabled = false
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
         _viewModel.initState.observe(viewLifecycleOwner) {
             handleInitialization(it)
         }
@@ -50,4 +62,5 @@ internal class LivepersonWrapperFragment : Fragment() {
             }
         }
     }
+
 }

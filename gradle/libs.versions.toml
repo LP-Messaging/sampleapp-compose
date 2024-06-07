@@ -1,52 +1,31 @@
 [versions]
 
-androidx-activity = "1.8.2"
-androidx-appcompat = "1.1.0"
-androidx-constraint-layout = "1.1.3"
-androidx-core-ktx = "1.12.0"
+androidx-activity = "1.9.0"
+androidx-appcompat = "1.7.0"
+androidx-core-ktx = "1.13.1"
 androidx-espresso-core = "3.5.1"
-androidx-exif-interface = "1.1.0"
-androidx-fragment = "1.8.0-alpha01"
-androidx-gridlayout = "1.0.0"
+androidx-fragment = "1.8.0-rc01"
 androidx-junit = "1.1.5"
-androidx-lifecycle-rt-ktx = "2.7.0"
+androidx-lifecycle-rt-ktx = "2.8.1"
 androidx-local-broadcast-manager = "1.1.0"
 androidx-navigation-compose = "2.7.7"
-androidx-percent-layout = "1.0.0"
-androidx-recylcer-view = "1.0.0"
 
-compose = "2024.04.00"
-
+compose = "2024.05.00"
 junit = "4.13.2"
-
 koin = "3.4.0"
 kotlinx-serialization = "1.6.0"
-
-lp-appointment-scheduler = "2.0.0"
-lp-date-picker = "2.1.0"
-lp_messaging_sdk = "5.22.0"
-lp_structured_content = "2.6.4"
-
-material = "1.3.0"
-nimbus = "9.37.3"
+lp_messaging_sdk = "5.22.0-beta01"
+material = "1.12.0"
 okhttp = "4.12.0"
-
-picasso = "2.8"
-play-services-maps = "18.1.0"
+play-services-maps = "18.2.0"
 retrofit = "2.11.0"
 retrofit-kotlinx-converter = "1.0.0"
-
-org-jetbrains-kotlin-android = "1.9.23"
-
 
 [libraries]
 
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraint-layout" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core-ktx" }
-androidx-exif-interface = { module = "androidx.exifinterface:exifinterface", version.ref = "androidx-exif-interface"}
-androidx-gridlayout = { module = "androidx.gridlayout:gridlayout", version.ref="androidx-gridlayout"}
 androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
 androidx-fragment-compose = { module = "androidx.fragment:fragment-compose", version.ref = "androidx-fragment" }
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-espresso-core" }
@@ -54,8 +33,6 @@ androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-j
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle-rt-ktx" }
 androidx-local-broadcast-manager = { module = "androidx.localbroadcastmanager:localbroadcastmanager", version.ref = "androidx-local-broadcast-manager"}
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation-compose"}
-androidx-percent-layout = { module="androidx.percentlayout:percentlayout", version.ref ="androidx-percent-layout" }
-androidx-recylcer-view = { module="androidx.recyclerview:recyclerview", version.ref="androidx-recylcer-view"}
 
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose" }
 compose-ui = { group = "androidx.compose.ui", name = "ui"}
@@ -78,32 +55,21 @@ koin-test-junit4 = { group = "io.insert-koin", name = "koin-test-junit4", versio
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization"}
 
 liveperson-sdk = { module = "com.liveperson.android:lp_messaging_sdk", version.ref = "lp_messaging_sdk" }
-lp-appointment-scheduler = { module = "com.liveperson.android:lp-appointment-scheduler", version.ref = "lp-appointment-scheduler" }
-lp-date-picker = { module = "com.liveperson.android:lp-date-picker", version.ref = "lp-date-picker" }
-lp_structured_content = { module = "com.liveperson.android:lp_structured_content", version.ref = "lp_structured_content" }
 
 material = { module = "com.google.android.material:material", version.ref = "material" }
-
-nimbus = { module = "com.nimbusds:nimbus-jose-jwt", version.ref="nimbus" }
-picasso = { module = "com.squareup.picasso:picasso", version.ref="picasso" }
 
 okhttp-logger = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "play-services-maps" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
-retrofit-serializer = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version = "1.0.0"}
-
-[plugins]
-
-org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
+retrofit-serializer = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-kotlinx-converter"}
 
 [bundles]
-
-androidx = ["androidx-activity-compose", "androidx-appcompat", "androidx-constraintlayout", "androidx-exif-interface",  "androidx-fragment", "androidx-fragment-compose", "androidx-core-ktx", "androidx-lifecycle-runtime-ktx", "androidx-navigation-compose", "androidx-local-broadcast-manager", "androidx-percent-layout", "androidx-recylcer-view"]
+androidx = ["androidx-activity-compose", "androidx-appcompat",  "androidx-fragment", "androidx-fragment-compose", "androidx-core-ktx", "androidx-lifecycle-runtime-ktx", "androidx-navigation-compose"]
 androidx-test = ["androidx-espresso-core", "androidx-junit"]
 compose = ["compose-ui", "compose-ui-graphics", "compose-ui-preview", "compose-material3"]
 compose-test = ["compose-test-ui-junit4"]
 compose-debug = ["compose-debug-ui-tooling", "compose-debug-ui-manifest"]
 koin = ["koin-android", "koin-android-compose" ]
 koin-test = ["koin-test-junit4"]
-liveperson = ["lp-appointment-scheduler", "lp-date-picker", "lp_structured_content", "nimbus", "picasso"]
+liveperson = ["liveperson-sdk"]
 network = ["okhttp-logger", "retrofit", "retrofit-serializer"]

@@ -54,7 +54,6 @@ dependencies {
     implementation(project(mapOf("path" to ":common")))
     implementation(project(mapOf("path" to ":common-ui")))
     implementation(project(mapOf("path" to ":external-auth")))
-    implementation(fileTree(mapOf("dir" to "../aars", "include" to listOf("*.aar"))))
 
     implementation(libs.material)
     implementation(libs.bundles.androidx)
