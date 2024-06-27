@@ -1,5 +1,6 @@
 package com.liveperson.compose.sample.presentation.conversation.components
 
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
@@ -18,12 +19,15 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.liveperson.compose.common_ui.views.LPConversationScreen
 import com.liveperson.compose.common_ui.wrapper.LPArguments
 import com.liveperson.compose.sample.R
 import com.liveperson.compose.sample.presentation.conversation.ConversationViewModel
+import com.liveperson.compose.sample.presentation.conversation.dto.ShowToastMessageEffect
+import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.koinViewModel
 
 const val ConversationScreenEndPoint = "conversation"
@@ -31,12 +35,12 @@ const val KEY_BRAND_ID = "brand.id"
 
 @Composable
 fun ConversationScreen(modifier: Modifier = Modifier, brandId: String) {
-    Column(modifier) {
-        val viewModel: ConversationViewModel = koinViewModel()
-        val lpArguments: LPArguments? by viewModel.lpArguments.collectAsState()
+    val viewModel: ConversationViewModel = koinViewModel()
+    val lpArguments: LPArguments? by viewModel.lpArguments.collectAsState()
 
-        var textState by rememberSaveable { mutableStateOf("") }
-        var isReadOnlyMode by rememberSaveable { mutableStateOf(true) }
+    var textState by rememberSaveable { mutableStateOf("") }
+    var isReadOnlyMode by rememberSaveable { mutableStateOf(true) }
+    Column(modifier) {
 
         LaunchedEffect(key1 = brandId) {
             viewModel.showConversation(brandId)
@@ -109,6 +113,16 @@ fun ConversationScreen(modifier: Modifier = Modifier, brandId: String) {
                 },
                 buttonText = "Send Text3"
             )
+        }
+    }
+    val content = LocalContext.current
+    LaunchedEffect(key1 = Unit) {
+        viewModel.effects.collectLatest {
+            when (it) {
+                is ShowToastMessageEffect -> {
+                    Toast.makeText(content, it.message, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }
