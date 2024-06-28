@@ -1,4 +1,4 @@
-# LivePerson Compose Sample (Beta)
+# LivePerson Compose Sample
 
 This project is created to demonstrate using SDK provided ConversationFragment within Compose environment.
 It has an example of [composable function](/common-ui/src/main/java/com/liveperson/compose/common_ui/views/LPConversationScreen.kt#L11) that could be used to represent a conversation screen
@@ -17,9 +17,9 @@ organize dependencies and their version. To build this sample app such dependenc
 
 - Kotlin version `1.9.23`
 - Kotlin compiler extensions: `kotlinCompilerExtensionVersion = "1.5.11"`
-- Compose bom: `androidx.compose:compose-bom:2024.04.00`
-- AndroidX Fragment-ktx: `androidx.fragment:fragment-compose:1.8.0-alpha01`
-- AndroidX lifecycle-ktx: `androidx.lifecycle:lifecycle-runtime-ktx:2.7.0`
+- Compose bom: `androidx.compose:compose-bom:2024.06.00`
+- AndroidX Fragment-ktx: `androidx.fragment:fragment-compose:1.8.1`
+- AndroidX lifecycle-ktx: `androidx.lifecycle:lifecycle-runtime-ktx:2.8.2`
 
 For more dependencies and their versions, please, check the [libs.versions.toml](/gradle/libs.versions.toml) file. 
 
