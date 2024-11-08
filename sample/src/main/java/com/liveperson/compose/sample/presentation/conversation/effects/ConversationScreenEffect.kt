@@ -1,4 +1,4 @@
-package com.liveperson.compose.sample.presentation.conversation.dto
+package com.liveperson.compose.sample.presentation.conversation.effects
 
 internal sealed interface ConversationScreenEffect
 

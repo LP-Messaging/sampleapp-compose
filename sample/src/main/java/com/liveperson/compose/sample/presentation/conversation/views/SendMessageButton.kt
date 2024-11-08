@@ -1,4 +1,4 @@
-package com.liveperson.compose.sample.presentation.conversation.components
+package com.liveperson.compose.sample.presentation.conversation.views
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer

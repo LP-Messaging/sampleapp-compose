@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="text_implicit_token">JWT token</string>
-    <string name="text_auth_code">Auth Code</string>
     <string name="text_code">Code</string>
     <string name="text_implicit">Implicit</string>
-    <string name="text_logout">Logout</string>
-    <string name="text_authenticate">Authenticate</string>
     <string name="title_choose_authentication_flow">Choose authentication flow</string>
-    <string name="text_please_authenticate">Please authenticate</string>
-    <string name="text_brand_id">Brand id</string>
+    <string name="hint_brand_id">Brand id</string>
+    <string name="hint_app_install_id">App install id</string>
+    <string name="hint_campaing_id">Campaing id</string>
+    <string name="hint_context_id">Context id</string>
+    <string name="hint_session_id">Session id</string>
+    <string name="hint_engagement_id">Engagement id</string>
+    <string name="hint_visitor_id">Visitor id</string>
+    <string name="button_get_enagement">Get engagement</string>
+    <string name="button_log_out">Log out</string>
+    <string name="button_initialize">Initialize</string>
+    <string name="hint_code">Code</string>
+    <string name="hint_token">Token</string>
+    <string name="text_encrypted">Encrypted</string>
+    <string name="hint_consumer_id">Consumer id</string>
+    <string name="hint_page_id">Page id</string>
+    <string name="hint_entry_points">Entry points</string>
+    <string name="hint_engagement_attrs">Engagement attributes</string>
+    <string name="button_get_egagement">Get Engagement</string>
+    <string name="button_show_conversaion">Show conversation</string>
+    <string name="title_monitoring_info">Monitoring info</string>
+    <string name="title_brand_data">Brand data</string>
+    <string name="title_sde_dialog">SDE Dialog</string>
+    <string name="text_unauth">UnAuth</string>
 </resources>

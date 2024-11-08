@@ -5,4 +5,7 @@
     <string name="text_open_gallery">Open Gallery</string>
     <string name="text_open_camera">Open Camera</string>
     <string name="text_send">Send</string>
+    <string name="text_send_message_1">Send text 1</string>
+    <string name="text_send_message_2">Send text 2</string>
+    <string name="text_send_message_3">Send text 3</string>
 </resources>

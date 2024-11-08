@@ -1,23 +1,25 @@
 [versions]
-androidx-activity = "1.9.0"
+androidx-activity = "1.9.3"
 androidx-appcompat = "1.7.0"
-androidx-core-ktx = "1.13.1"
+androidx-core-ktx = "1.15.0"
 androidx-espresso-core = "3.6.1"
-androidx-fragment = "1.8.1"
+androidx-fragment = "1.8.5"
 androidx-junit = "1.2.1"
-androidx-lifecycle-rt-ktx = "2.8.2"
+androidx-lifecycle-rt-ktx = "2.8.7"
 androidx-local-broadcast-manager = "1.1.0"
-androidx-navigation-compose = "2.7.7"
-compose = "2024.06.00"
+androidx-navigation-compose = "2.8.3"
+compose = "2024.10.01"
 junit = "4.13.2"
 koin = "3.4.0"
-kotlinx-serialization = "1.6.0"
-lp_messaging_sdk = "5.23.1"
+kotlinx-serialization = "1.6.3"
+lp_messaging_sdk = "5.24.0"
 material = "1.12.0"
 okhttp = "4.12.0"
 play-services-maps = "19.0.0"
 retrofit = "2.11.0"
 retrofit-kotlinx-converter = "1.0.0"
+android-gradle-plugin = "8.1.4"
+kotlin = "1.9.23"
 
 [libraries]
 
@@ -60,6 +62,13 @@ okhttp-logger = { group = "com.squareup.okhttp3", name = "logging-interceptor", 
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "play-services-maps" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-serializer = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-kotlinx-converter"}
+
+[plugins]
+android-app = { id = "com.android.application", version.ref = "android-gradle-plugin" }
+android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 [bundles]
 androidx = ["androidx-activity-compose", "androidx-appcompat",  "androidx-fragment", "androidx-fragment-compose", "androidx-core-ktx", "androidx-lifecycle-runtime-ktx", "androidx-navigation-compose"]

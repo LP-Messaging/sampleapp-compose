@@ -3,6 +3,8 @@ package com.liveperson.common.data.liveperson
 import android.content.Context
 import com.liveperson.common.AppResult
 import com.liveperson.common.data.liveperson.coroutines.executeGetEngagement
+import com.liveperson.common.domain.AuthParams
+import com.liveperson.common.domain.UnAuthParams
 import com.liveperson.common.domain.interactor.LivePersonMonitoringInteractor
 import com.liveperson.monitoring.model.LPMonitoringIdentity
 import com.liveperson.monitoring.sdk.MonitoringParams
@@ -15,11 +17,18 @@ internal class LivePersonMonitoringInteractorImpl(
 
     override suspend fun getEngagement(
         identities: List<Pair<String, String?>>,
-        monitoringParams: MonitoringParams
+        monitoringParams: MonitoringParams,
+        authParams: AuthParams?
     ): AppResult<LPEngagementResponse, Throwable> {
         val monitoringIdentities = identities.map { LPMonitoringIdentity(it.first, it.second) }
         return executeGetEngagement {
-            LivepersonMonitoring.getEngagement(context, monitoringIdentities, monitoringParams, it)
+            LivepersonMonitoring.getEngagement(
+                context,
+                monitoringIdentities,
+                monitoringParams,
+                authParams?.takeUnless { params -> params is UnAuthParams }?.toAuthParams(),
+                it
+            )
         }
     }
 }

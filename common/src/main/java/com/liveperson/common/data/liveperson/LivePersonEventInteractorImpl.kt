@@ -14,6 +14,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 
+@Suppress("DEPRECATION")
 internal class LivePersonEventInteractorImpl(
     private val localBroadcastManager: LocalBroadcastManager
 ): LivePersonEventsInteractor {
