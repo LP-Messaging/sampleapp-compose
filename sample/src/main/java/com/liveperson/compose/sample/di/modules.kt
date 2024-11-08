@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.liveperson.compose.sample.di
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -26,5 +28,14 @@ val presentationModule = module {
 
     includes(lpPresentationModule, externalAuthVmModule)
 
-    viewModel { ConversationViewModel(get(), get()) }
+    viewModel {
+        ConversationViewModel(
+            brandId = it[0],
+            appId = it[1],
+            appInstallId = it[2],
+            authParams = it[3],
+            campaignInfo = it[4],
+            hybridCommandsInteractor = get()
+        )
+    }
 }

@@ -1,11 +1,11 @@
 plugins {
-    id("com.android.library") version "8.1.0"
-    id("org.jetbrains.kotlin.android") version "1.8.10"
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
     namespace = "com.liveperson.compose.common_ui"
-    compileSdk = 33
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24

@@ -1,4 +1,4 @@
-package com.liveperson.compose.sample.presentation.conversation.components
+package com.liveperson.compose.sample.presentation.conversation
 
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
@@ -22,29 +22,34 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.liveperson.common.domain.AuthParams
+import com.liveperson.common.domain.ConsumerCampaignInfo
 import com.liveperson.compose.common_ui.views.LPConversationScreen
 import com.liveperson.compose.common_ui.wrapper.LPArguments
 import com.liveperson.compose.sample.R
-import com.liveperson.compose.sample.presentation.conversation.ConversationViewModel
-import com.liveperson.compose.sample.presentation.conversation.dto.ShowToastMessageEffect
+import com.liveperson.compose.sample.presentation.conversation.effects.ShowToastMessageEffect
+import com.liveperson.compose.sample.presentation.conversation.views.ActionButton
+import com.liveperson.compose.sample.presentation.conversation.views.MessageBox
+import com.liveperson.compose.sample.presentation.conversation.views.ReadOnlyModeSwitch
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.koinViewModel
-
-const val ConversationScreenEndPoint = "conversation"
-const val KEY_BRAND_ID = "brand.id"
+import org.koin.core.parameter.parametersOf
 
 @Composable
-fun ConversationScreen(modifier: Modifier = Modifier, brandId: String) {
-    val viewModel: ConversationViewModel = koinViewModel()
+fun ConversationScreen(
+    modifier: Modifier = Modifier,
+    brandId: String,
+    appId: String,
+    appInstallId: String,
+    authParams: AuthParams,
+    campaignInfo: ConsumerCampaignInfo
+) {
+    val viewModel: ConversationViewModel = koinViewModel(parameters = { parametersOf(brandId, appId, appInstallId, authParams, campaignInfo) })
     val lpArguments: LPArguments? by viewModel.lpArguments.collectAsState()
 
     var textState by rememberSaveable { mutableStateOf("") }
     var isReadOnlyMode by rememberSaveable { mutableStateOf(true) }
     Column(modifier) {
-
-        LaunchedEffect(key1 = brandId) {
-            viewModel.showConversation(brandId)
-        }
 
         AnimatedVisibility(
             modifier = Modifier
@@ -86,11 +91,14 @@ fun ConversationScreen(modifier: Modifier = Modifier, brandId: String) {
                 onSendMessageClick = {
                     viewModel.sendMessage(it)
                     textState = ""
-                })
+                },
+                modifier = Modifier.fillMaxWidth()
+            )
         }
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .wrapContentHeight()
                 .padding(vertical = 4.dp)
                 .horizontalScroll(rememberScrollState()),
             verticalAlignment = Alignment.CenterVertically
@@ -99,19 +107,19 @@ fun ConversationScreen(modifier: Modifier = Modifier, brandId: String) {
                 onSendMessageClick = {
                     viewModel.sendMessage(it)
                 },
-                buttonText = "Send Text1"
+                buttonText = stringResource(id = R.string.text_send_message_1)
             )
             ActionButton(
                 onSendMessageClick = {
                     viewModel.sendMessage(it)
                 },
-                buttonText = "Send Text2"
+                buttonText = stringResource(id = R.string.text_send_message_2)
             )
             ActionButton(
                 onSendMessageClick = {
                     viewModel.sendMessage(it)
                 },
-                buttonText = "Send Text3"
+                buttonText = stringResource(id = R.string.text_send_message_3)
             )
         }
     }

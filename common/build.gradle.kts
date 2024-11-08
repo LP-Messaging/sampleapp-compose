@@ -1,12 +1,13 @@
 plugins {
-    id("com.android.library") version "8.1.0"
-    id("org.jetbrains.kotlin.android") version "1.8.10"
-    kotlin("plugin.serialization") version "1.9.23"
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
     namespace = "com.liveperson.common"
-    compileSdk = 33
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24

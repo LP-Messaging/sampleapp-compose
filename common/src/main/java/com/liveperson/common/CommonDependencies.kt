@@ -6,19 +6,18 @@ import com.liveperson.common.data.liveperson.LivePersonAuthInteractorImpl
 import com.liveperson.common.data.liveperson.LivePersonEventInteractorImpl
 import com.liveperson.common.data.liveperson.LivePersonMonitoringInteractorImpl
 import com.liveperson.common.data.persistance.createAuthPreferences
-import com.liveperson.common.data.repository.AuthParamsRepositoryImpl
 import com.liveperson.common.domain.interactor.LPHybridCommandsInteractor
 import com.liveperson.common.domain.interactor.LivePersonAuthInteractor
 import com.liveperson.common.domain.interactor.LivePersonEventsInteractor
 import com.liveperson.common.domain.interactor.LivePersonMonitoringInteractor
-import com.liveperson.common.domain.repository.AuthParamsRepository
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
-import org.koin.core.qualifier.Qualifier
 import org.koin.core.qualifier.qualifier
 import org.koin.dsl.module
 
 private const val AUTH_SERIALIZATION_JSON = "seiralization.json"
 
+@OptIn(ExperimentalSerializationApi::class)
 val commonDataModule = module {
 
     single {
@@ -48,9 +47,5 @@ val commonDomainModule = module {
 
     single<LivePersonMonitoringInteractor> {
         LivePersonMonitoringInteractorImpl(get())
-    }
-
-    single<AuthParamsRepository> {
-        AuthParamsRepositoryImpl(get(qualifier(AUTH_SERIALIZATION_JSON)), get())
     }
 }
